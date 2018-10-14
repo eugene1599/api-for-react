@@ -1,9 +1,10 @@
 {
-  "title": "Project",
+  "title": "Note",
   "type": "object",
   "properties": {
       "id": { "type": "integer" },
-      "name": { "type": "string" },
+      "title": { "type": "string" },
+      "content": { "type": "string" },
       "user_id": {"type": "integer"},
       "updated_at": {"type": "string"},
       "created_at": {"type": "string"}

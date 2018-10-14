@@ -1,5 +1,0 @@
-{
-  "title": "Projects list",
-  "type": "array",
-  "items": { "$ref": "project.json" }
-}

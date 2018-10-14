@@ -7,14 +7,13 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'acts_as_list'
-gem 'apipie-rails', '~> 0.5.5'
+#gem 'acts_as_list'
+#gem 'apipie-rails', '~> 0.5.5'
 gem 'cancancan', '~> 2.0'
-gem 'carrierwave', '~> 1.1'
 gem 'devise_token_auth', '~> 0.1.42'
-gem 'fog-aws', '~> 1.4', '>= 1.4.1'
-gem 'fog-google'
-gem 'google-api-client', '> 0.8.5', '< 0.9'
+#gem 'fog-aws', '~> 1.4', '>= 1.4.1'
+#gem 'fog-google'
+#gem 'google-api-client', '> 0.8.5', '< 0.9'
 gem 'i18n', '~> 0.9.1'
 gem 'jbuilder', '~> 2.5'
 gem 'mini_magick', '~> 4.8'
@@ -48,3 +47,11 @@ group :development do
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'trailblazer'
+gem 'trailblazer-rails'
+gem 'trailblazer-cells'
+gem 'reform-rails'
+gem 'cells-rails'
+gem 'cells-slim'
+gem 'dry-validation'
+gem 'dry-auto_inject'

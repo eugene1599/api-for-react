@@ -1,5 +1,0 @@
-{
-  "title": "Comments",
-  "type": "array",
-  "items": { "$ref": "comment.json" }
-}
