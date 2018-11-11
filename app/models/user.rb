@@ -6,6 +6,9 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
   has_many :notes, dependent: :destroy
+  has_one :user_info
+
+  mount_uploader :avatar, AvatarUploader
 
   validates :email, uniqueness: true, presence: true
   validates :password, length: { is: 8 },

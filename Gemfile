@@ -21,6 +21,8 @@ gem 'pg', '~> 0.21.0'
 gem 'puma', '~> 3.7'
 gem 'rack-cors', require: 'rack/cors'
 gem 'rails', '~> 5.1', '>= 5.1.6'
+gem 'carrierwave'
+gem 'file_validators'
 
 group :development, :test do
   gem 'brakeman'
