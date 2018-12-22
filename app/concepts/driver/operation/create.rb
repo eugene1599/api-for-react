@@ -1,7 +1,9 @@
 class Driver::Create < Trailblazer::Operation
   class Present < Trailblazer::Operation
+    self['contract.default.class'] = Driver::Contract::Create
+
     step Model(Driver, :new)
-    step Contract::Build(constant: Driver::Contract::Create)
+    step Contract::Build()
   end
 
   step Nested(Present)

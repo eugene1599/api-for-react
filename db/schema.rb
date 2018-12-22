@@ -10,18 +10,69 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_11_175138) do
+ActiveRecord::Schema.define(version: 2018_12_09_185413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "notes", force: :cascade do |t|
-    t.string "title", null: false
-    t.text "content"
-    t.bigint "user_id"
+  create_table "cars", id: :serial, force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_notes_on_user_id"
+    t.integer "car_type", default: 0, null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_cars_on_user_id"
+  end
+
+  create_table "customers", id: :serial, force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "company", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_customers_on_user_id"
+  end
+
+  create_table "drivers", id: :serial, force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "driver_type", default: 0, null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_drivers_on_user_id"
+  end
+
+  create_table "drivers_races", id: false, force: :cascade do |t|
+    t.integer "race_id", null: false
+    t.integer "driver_id", null: false
+    t.index ["driver_id", "race_id"], name: "index_drivers_races_on_driver_id_and_race_id"
+    t.index ["race_id", "driver_id"], name: "index_drivers_races_on_race_id_and_driver_id"
+  end
+
+  create_table "races", id: :serial, force: :cascade do |t|
+    t.integer "car_id"
+    t.integer "customer_id"
+    t.float "cargo_weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.index ["car_id"], name: "index_races_on_car_id"
+    t.index ["customer_id"], name: "index_races_on_customer_id"
+    t.index ["user_id"], name: "index_races_on_user_id"
+  end
+
+  create_table "reports", id: :serial, force: :cascade do |t|
+    t.integer "mileage", null: false
+    t.float "fuel", null: false
+    t.float "fuel_cost", null: false
+    t.integer "race_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["race_id"], name: "index_reports_on_race_id"
   end
 
   create_table "user_profiles", force: :cascade do |t|
@@ -64,6 +115,8 @@ ActiveRecord::Schema.define(version: 2018_11_11_175138) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
-  add_foreign_key "notes", "users"
+  add_foreign_key "races", "cars"
+  add_foreign_key "races", "customers"
+  add_foreign_key "reports", "races"
   add_foreign_key "user_profiles", "users"
 end

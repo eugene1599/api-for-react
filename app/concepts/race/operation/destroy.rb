@@ -3,7 +3,7 @@ class Race::Destroy < Trailblazer::Operation
   step :destroy!
 
   def model!(ctx, current_user:, params:, **)
-    ctx['model'] = current_user.races.find(params[:id])
+    ctx['model'] = current_user.races.find_by(id: params[:id])
   end
 
   def destroy!(ctx, current_user:, **)

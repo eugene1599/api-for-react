@@ -3,7 +3,7 @@ class Customer::Destroy < Trailblazer::Operation
   step :destroy!
 
   def model!(ctx, current_user:, params:, **)
-    ctx['model'] = current_user.customers.find(params[:id])
+    ctx['model'] = current_user.customers.find_by(id: params[:id])
   end
 
   def destroy!(ctx, current_user:, **)

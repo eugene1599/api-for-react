@@ -1,13 +1,16 @@
 class Race::Create < Trailblazer::Operation
   class Present < Trailblazer::Operation
+    self['contract.default.class'] = Race::Contract::Create
+
     step Model(Race, :new)
-    step Contract::Build(constant: Race::Contract::Create)
+    step Contract::Build()
   end
 
+  self['contract.default.class'] = Race::Contract::Create
   step Model(Race, :new)
-  step :parse_dates!
+  #step :parse_dates!
   step :assign_current_user!
-  step Contract::Build(constant: Race::Contract::Create)
+  step Contract::Build()
   step Contract::Validate(key: :race)
   step Contract::Persist()
 

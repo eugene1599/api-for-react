@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       resources :races do
         resources :reports
       end
-      resources :drivers, except: :show
+      resources :drivers
       resources :cars
 
       get 'reports', to: 'reports#user_reports'
