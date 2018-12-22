@@ -5,8 +5,12 @@ class User < ApplicationRecord
 
   include DeviseTokenAuth::Concerns::User
 
-  has_many :notes, dependent: :destroy
-  has_one :user_info
+  has_many :customers, dependent: :destroy
+  has_many :drivers, dependent: :destroy
+  has_many :cars, dependent: :destroy
+  has_many :races, dependent: :destroy
+  has_many :reports, through: :races
+  has_one :user_profile
 
   mount_uploader :avatar, AvatarUploader
 

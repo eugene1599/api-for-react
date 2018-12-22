@@ -5,8 +5,8 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!, unless: :devise_controller?
 
-  def tst
-    pry
+  def emptypage
+    render nothing: true
   end
 
   private

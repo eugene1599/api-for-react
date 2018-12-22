@@ -11,7 +11,7 @@ module Api
         if result.success?
           render json: result['model'], status: :created
         else
-          render json: result['model'].errors, status: :unprocessable_entity
+          render json: result['contract.default'].errors.messages, status: :unprocessable_entity
         end
       end
 
@@ -25,7 +25,7 @@ module Api
         if result.success?
           render json: result['model'], status: :ok
         else
-          render json: result['model'], status: :unprocessable_entity
+          render json: result['contract.default'].errors.messages, status: :unprocessable_entity
         end
       end
 
