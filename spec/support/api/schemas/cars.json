@@ -1,0 +1,5 @@
+{
+  "title": "Cars list",
+  "type": "array",
+  "items": { "$ref": "car.json" }
+}

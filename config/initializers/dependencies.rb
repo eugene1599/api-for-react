@@ -6,14 +6,18 @@ class MyContainer
   end
 
   register 'driver.contract' do
-    UserProfile::Contract::Create
+    Driver::Contract::Create
   end
 
   register 'customer.contract' do
-    UserProfile::Contract::Create
+    Customer::Contract::Create
   end
 
   register 'race.contract' do
+    Race::Contract::Create
+  end
+
+  register 'user_profile.contract' do
     UserProfile::Contract::Create
   end
 end

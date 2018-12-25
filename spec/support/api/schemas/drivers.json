@@ -1,0 +1,5 @@
+{
+  "title": "Drivers list",
+  "type": "array",
+  "items": { "$ref": "driver.json" }
+}

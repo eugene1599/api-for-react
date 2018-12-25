@@ -1,0 +1,5 @@
+{
+  "title": "Customers list",
+  "type": "array",
+  "items": { "$ref": "customer.json" }
+}

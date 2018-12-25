@@ -30,7 +30,7 @@ module Api
       end
 
       def destroy
-        run Customer::Delete
+        run Customer::Destroy
       end
 
       private

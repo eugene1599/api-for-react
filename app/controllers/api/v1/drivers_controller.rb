@@ -30,7 +30,7 @@ module Api
       end
 
       def destroy
-        run Driver::Delete
+        run Driver::Destroy
       end
 
       private

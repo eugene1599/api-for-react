@@ -14,8 +14,8 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
-  validates :email, uniqueness: true, presence: true
-  validates :password, length: { is: 8 },
+  validates :email, email: true, uniqueness: true, presence: true
+  validates :password, length: { minimum: 8 },
                        format: { with: PASSWORD_REGEX },
                        if: -> { password.present? }
   validates :password, confirmation: true

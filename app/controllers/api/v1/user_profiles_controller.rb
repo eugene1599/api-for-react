@@ -19,7 +19,7 @@ module Api
 
       def _run_options(options)
         options = super(options)
-        options.merge('contract.default.class' => MyContainer['user_profile.contract.create'])
+        options.merge('contract.default.class' => MyContainer['user_profile.contract'])
       end
     end
   end

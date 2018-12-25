@@ -9,7 +9,7 @@ end
 
 gem 'devise_token_auth', '~> 0.1.42'
 gem 'i18n', '~> 0.9.1'
-gem 'jbuilder', '~> 2.5'
+gem 'jbuilder'
 gem 'mini_magick', '~> 4.8'
 gem 'pg', '~> 0.21.0'
 gem 'puma', '~> 3.7'
@@ -17,6 +17,8 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'rails', '~> 5.1', '>= 5.1.6'
 gem 'carrierwave'
 gem 'file_validators'
+gem 'cancancan'
+gem 'email_validator', '~> 1.6'
 
 group :development, :test do
   gem 'brakeman'

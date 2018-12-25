@@ -30,7 +30,7 @@ module Api
       end
 
       def destroy
-        run Car::Delete
+        run Car::Destroy
       end
 
       private

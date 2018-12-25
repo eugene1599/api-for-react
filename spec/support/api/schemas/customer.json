@@ -1,10 +1,11 @@
 {
-  "title": "Note",
+  "title": "Customer",
   "type": "object",
   "properties": {
       "id": { "type": "integer" },
-      "title": { "type": "string" },
-      "content": { "type": "string" },
+      "first_name": { "type": "string" },
+      "last_name": { "type": "string" },
+      "company": { "type": "string" },
       "user_id": {"type": "integer"},
       "updated_at": {"type": "string"},
       "created_at": {"type": "string"}

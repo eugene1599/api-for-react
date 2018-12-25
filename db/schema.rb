@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_09_185413) do
+ActiveRecord::Schema.define(version: 2018_12_23_163952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2018_12_09_185413) do
     t.integer "user_id"
     t.datetime "start_date"
     t.datetime "end_date"
+    t.float "race_price", default: 0.0
     t.index ["car_id"], name: "index_races_on_car_id"
     t.index ["customer_id"], name: "index_races_on_customer_id"
     t.index ["user_id"], name: "index_races_on_user_id"
