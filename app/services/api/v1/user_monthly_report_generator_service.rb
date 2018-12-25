@@ -59,7 +59,7 @@ module Api
         end_mileage = reports.maximum(:mileage)
         total_fuel = reports.sum(:fuel)
 
-        ((end_mileage - start_mileage) / total_fuel).round(2) * 100
+        (total_fuel / (end_mileage - start_mileage)).round(2) * 100
       end
 
       def race_has_enough_reports?(race)

@@ -35,7 +35,11 @@ module Api
       def search_cars_by_driver
         driver = current_user.drivers.find_by(id: params[:driver_id])
 
-        cars = Car.where(id: driver.races.pluck(:car_id))
+        cars = Car.where(id: driver.races
+                    .where('races.start_date >= :start_date', start_date: params[:start_date])
+                    .where('races.start_date <= :end_date', end_date: params[:end_date])
+                    .pluck(:car_id)
+                  )
         @cars = CarReporter.new(cars).each_car_report.for_period(
                   start_date: params[:start_date],
                   end_date: params[:end_date]

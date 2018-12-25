@@ -17,7 +17,6 @@ describe Race::Create do
   context 'with valid params' do
     it 'creates new race' do
       result = Race::Create.({ race: race_valid_params }, current_user: user)
-      #binding.pry
       expect(result.success?).to be true
     end
   end
