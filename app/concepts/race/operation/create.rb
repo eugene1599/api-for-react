@@ -1,12 +1,12 @@
 class Race::Create < Trailblazer::Operation
-  class Present < Trailblazer::Operation
-    self['contract.default.class'] = Race::Contract::Create
+  # class Present < Trailblazer::Operation
+  #   self['contract.default.class'] = Race::Contract::Create
 
-    step Model(Race, :new)
-    step Contract::Build()
-  end
+  #   step Model(Race, :new)
+  #   step Contract::Build()
+  # end
 
-  self['contract.default.class'] = Race::Contract::Create
+  # self['contract.default.class'] = Race::Contract::Create
   step Model(Race, :new)
   #step :parse_dates!
   step :assign_current_user!

@@ -1,4 +1,8 @@
 class Report < ApplicationRecord
+  field :mileage, type: Integer
+  field :fuel, type: Float
+  field :fuel_cost, type: Float
+
   belongs_to :race
 
   validate :check_race_owner
@@ -23,11 +27,11 @@ class Report < ApplicationRecord
   end
 
   def mileage_from_previous_report
-    return 0 unless race.reports.first.persisted?
+    # return 0 unless race.reports.first.persisted?
 
-    return race.reports.where.not(id: nil).last.mileage unless persisted?
+    # return race.reports.where.not(id: nil).last.mileage unless persisted?
 
-    return 0 if race.reports.first.id == id
+    # return 0 if race.reports.first.id == id
 
     race.reports
         .where('mileage <= :current_report', current_report: mileage)

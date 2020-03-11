@@ -1,12 +1,12 @@
 class Car::Create < Trailblazer::Operation
-  class Present < Trailblazer::Operation
-    self['contract.default.class'] = Car::Contract::Create
+  # class Present < Trailblazer::Operation
+  #   self['contract.default.class'] = Car::Contract::Create
 
-    step Model(Car, :new)
-    step Contract::Build()
-  end
+  #   step Model(Car, :new)
+  #   step Contract::Build()
+  # end
 
-  step Nested(Present)
+  # step Nested(Present)
   step :assign_current_user!
   step Contract::Validate(key: :car)
   step Contract::Persist()

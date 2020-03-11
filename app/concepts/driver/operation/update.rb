@@ -1,5 +1,5 @@
 class Driver::Update < Trailblazer::Operation
-  self['contract.default.class'] = Driver::Contract::Create
+  # self['contract.default.class'] = Driver::Contract::Create
 
   step :model!
   step Contract::Build()

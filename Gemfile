@@ -7,14 +7,13 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'devise_token_auth', '~> 0.1.42'
-gem 'i18n', '~> 0.9.1'
+gem 'devise_token_auth', '~> 1.1', '>= 1.1.3'
 gem 'jbuilder'
 gem 'mini_magick', '~> 4.8'
-gem 'pg', '~> 0.21.0'
-gem 'puma', '~> 3.7'
+gem 'mongoid', '~> 7.0.6'
+gem 'puma', '~> 4.3', '>= 4.3.3'
 gem 'rack-cors', require: 'rack/cors'
-gem 'rails', '~> 5.1', '>= 5.1.6'
+gem 'rails', '~> 6.0', '>= 6.0.2.1'
 gem 'carrierwave'
 gem 'file_validators'
 gem 'cancancan'

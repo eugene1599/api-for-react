@@ -1,4 +1,4 @@
 class UserProfile < ApplicationRecord
-  mount_uploader :avatar, AvatarUploader
-  belongs_to :user
+  # mount_uploader :avatar, AvatarUploader
+  # belongs_to :user
 end

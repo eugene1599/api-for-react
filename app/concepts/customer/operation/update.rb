@@ -1,5 +1,5 @@
 class Customer::Update < Trailblazer::Operation
-  self['contract.default.class'] = Customer::Contract::Create
+  # self['contract.default.class'] = Customer::Contract::Create
 
   step :model!
   step Contract::Build()

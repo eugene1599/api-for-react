@@ -1,15 +1,15 @@
 class Race::Update < Trailblazer::Operation
-  class Present < Trailblazer::Operation
-    self['contract.default.class'] = Race::Contract::Create
-    step :model!
-    step Contract::Build()
+  # class Present < Trailblazer::Operation
+  #   self['contract.default.class'] = Race::Contract::Create
+  #   step :model!
+  #   step Contract::Build()
 
-    def model!(cxt, current_user:, params:, **)
-      cxt['model'] = current_user.races.find_by(id: params[:id])
-    end
-  end
+  #   def model!(cxt, current_user:, params:, **)
+  #     cxt['model'] = current_user.races.find_by(id: params[:id])
+  #   end
+  # end
 
-  self['contract.default.class'] = Race::Contract::Create
+  # self['contract.default.class'] = Race::Contract::Create
 
   step :model!
   #step :parse_dates!

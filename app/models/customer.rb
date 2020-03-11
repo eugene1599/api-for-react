@@ -1,5 +1,9 @@
 class Customer < ApplicationRecord
-  enum type: %i[mechanic driver forwarder]
-  has_many :races, dependent: :destroy
+
+  field :first_name, type: String
+  field :last_name, type: String
+  field :company, type: String
+
   belongs_to :user
+  has_many :races, dependent: :destroy
 end

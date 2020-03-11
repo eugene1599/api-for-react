@@ -1,5 +1,5 @@
 class UserProfile::Update < Trailblazer::Operation
-  self['contract.default.class'] = UserProfile::Contract::Create
+  # self['contract.default.class'] = UserProfile::Contract::Create
 
   step :model!
   step Contract::Build()
