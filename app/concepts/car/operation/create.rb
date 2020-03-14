@@ -1,4 +1,5 @@
 class Car::Create < Trailblazer::Operation
+  step Model( Car, :new )
   step Contract::Build(constant: Car::Contract::Create)
   step :assign_current_user!
   step Contract::Validate(key: :car)
