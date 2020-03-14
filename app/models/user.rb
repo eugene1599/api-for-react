@@ -2,11 +2,11 @@ class User
   include Documentable
   include Mongoid::Locker
 
-  field :locker_locked_at, type: Time
-  field :locker_locked_until, type: Time
+  field :locking_name, type: String
+  field :locked_at, type: Time
 
-  locker locked_at_field: :locker_locked_at,
-         locked_until_field: :locker_locked_until
+  # locker locked_at_field: :locker_locked_at,
+        #  locked_until_field: :locker_locked_until
 
   ## Database authenticatable
   field :email,              type: String, default: ''
@@ -35,7 +35,7 @@ class User
   index({ reset_password_token: 1 }, { name: 'reset_password_token_index', unique: true, sparse: true, background: true })
   index({ confirmation_token: 1 }, { name: 'confirmation_token_index', unique: true, sparse: true, background: true })
   index({ uid: 1, provider: 1}, { name: 'uid_provider_index', unique: true, background: true })
-  # index({ unlock_token: 1 }, { name: 'unlock_token_index', unique: true, sparse: true, background: true })
+  index({ _id: 1, locking_name: 1 }, name: 'mongoid_locker_index', sparse: true, unique: true, expire_after_seconds: lock_timeout)
 
   PASSWORD_REGEX = Regexp.new('\A[A-Za-z\-_0-9\d]+\z')
 
