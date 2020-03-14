@@ -1,12 +1,12 @@
 class User
   include Documentable
-  # include Mongoid::Locker
+  include Mongoid::Locker
 
-  # field :locker_locked_at, type: Time
-  # field :locker_locked_until, type: Time
+  field :locker_locked_at, type: Time
+  field :locker_locked_until, type: Time
 
-  # locker locked_at_field: :locker_locked_at,
-        #  locked_until_field: :locker_locked_until
+  locker locked_at_field: :locker_locked_at,
+         locked_until_field: :locker_locked_until
 
   ## Database authenticatable
   field :email,              type: String, default: ''
@@ -51,4 +51,9 @@ class User
   validates :email, email: true, uniqueness: true, presence: true
   validates :password, length: { minimum: 8 }, if: -> { password.present? }
   validates :password, confirmation: true
+
+  # FIXME, https://github.com/lynndylanhurley/devise_token_auth/issues/1335
+  def saved_change_to_attribute?(attr_name, **options)
+    true
+  end
 end
