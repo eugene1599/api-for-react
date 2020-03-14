@@ -28,7 +28,7 @@ class User
   validates :password, confirmation: true
 
   # FIXME, https://github.com/lynndylanhurley/devise_token_auth/issues/1335
-  # def saved_change_to_attribute?(attr_name, **options)
-  #   true
-  # end
+  def saved_change_to_attribute?(attr_name, **options)
+    true
+  end
 end
