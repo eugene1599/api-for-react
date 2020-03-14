@@ -170,3 +170,5 @@ production:
       uri: <%= ENV["MONGODB_URI"] %>
       options:
         connect_timeout: 15
+        write:
+          w: 0
