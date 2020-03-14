@@ -1,9 +1,8 @@
 class Car::Update < Trailblazer::Operation
   # self['contract.default.class'] = Car::Contract::Create
 
-  step Contract::Build(constant: Car::Contract::Create)
   step :model!
-  step Contract::Build()
+  step Contract::Build(constant: Car::Contract::Create)
   step Contract::Validate( key: :car )
   step Contract::Persist()
 
