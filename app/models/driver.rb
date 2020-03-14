@@ -1,6 +1,6 @@
 class Driver
   include Documentable
-  as_enum :driver_type, %i[driver mechanic forwarder]
+  as_enum :driver_type, %i[driver mechanic forwarder], field: { default: 0 }
 
   field :first_name, type: String
   field :last_name, type: String
