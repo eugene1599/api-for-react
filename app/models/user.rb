@@ -1,5 +1,7 @@
-class User < ApplicationRecord
+class User
+  include Documentable
   # include Mongoid::Attributes::Dynamic
+
   PASSWORD_REGEX = Regexp.new('\A[A-Za-z\-_0-9\d]+\z')
 
   field :email, type: String
@@ -25,7 +27,7 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 8 }, if: -> { password.present? }
   validates :password, confirmation: true
 
-  # BAD FIX, https://github.com/lynndylanhurley/devise_token_auth/issues/1335
+  # FIXME, https://github.com/lynndylanhurley/devise_token_auth/issues/1335
   def saved_change_to_attribute?(attr_name, **options)
     true
   end

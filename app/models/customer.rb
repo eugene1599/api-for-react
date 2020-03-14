@@ -1,4 +1,5 @@
-class Customer < ApplicationRecord
+class Customer
+  include Documentable
 
   field :first_name, type: String
   field :last_name, type: String

@@ -1,4 +1,6 @@
-class Race < ApplicationRecord
+class Race
+  include Documentable
+
   field :start_date, type: DateTime
   field :end_date, type: DateTime
   field :cargo_weight, type: Float

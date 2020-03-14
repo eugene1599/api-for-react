@@ -18,6 +18,7 @@ gem 'carrierwave'
 gem 'file_validators'
 gem 'cancancan'
 gem 'email_validator', '~> 1.6'
+gem 'simple_enum'
 
 group :development, :test do
   gem 'brakeman'

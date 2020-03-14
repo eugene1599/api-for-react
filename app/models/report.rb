@@ -1,13 +1,15 @@
-class Report < ApplicationRecord
+class Report
+  include Documentable
+
   field :mileage, type: Integer
   field :fuel, type: Float
   field :fuel_cost, type: Float
 
   belongs_to :race
 
-  validate :check_race_owner
-  validate :current_mileage_should_be_greater_than_previous_or_eq
-  validate :current_mileage_should_be_smaller_than_next, on: :update
+  # validate :check_race_owner
+  # validate :current_mileage_should_be_greater_than_previous_or_eq
+  # validate :current_mileage_should_be_smaller_than_next, on: :update
   validates :fuel, presence: true, numericality: { only_integer: false, greater_than: 0 }
   validates :fuel_cost, presence: true, numericality: { only_integer: false, greater_than: 0 }
   validates :mileage, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
