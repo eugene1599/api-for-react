@@ -3,7 +3,6 @@ class Car
   as_enum :car_type, %i[truck bus]
 
   field :name, type: String
-  field :car_type_cd, type: Integer
 
   belongs_to :user
   has_many :races, dependent: :destroy
