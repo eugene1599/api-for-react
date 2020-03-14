@@ -1,12 +1,12 @@
 class User
   include Documentable
-  include Mongoid::Locker
+  # include Mongoid::Locker
 
-  field :locker_locked_at, type: Time
-  field :locker_locked_until, type: Time
+  # field :locker_locked_at, type: Time
+  # field :locker_locked_until, type: Time
 
-  locker locked_at_field: :locker_locked_at,
-         locked_until_field: :locker_locked_until
+  # locker locked_at_field: :locker_locked_at,
+        #  locked_until_field: :locker_locked_until
 
   ## Database authenticatable
   field :email,              type: String, default: ''
