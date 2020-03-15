@@ -20,6 +20,7 @@ gem 'file_validators'
 gem 'cancancan'
 gem 'email_validator', '~> 1.6'
 gem 'simple_enum'
+gem 'blueprinter'
 
 group :development, :test do
   gem 'brakeman'
