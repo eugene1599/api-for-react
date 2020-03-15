@@ -14,13 +14,6 @@ module Api
           render json: result['contract.default'].errors.messages, status: :unprocessable_entity
         end
       end
-
-      private
-
-      def _run_options(options)
-        options = super(options)
-        options.merge('contract.default.class' => MyContainer['user_profile.contract'])
-      end
     end
   end
 end

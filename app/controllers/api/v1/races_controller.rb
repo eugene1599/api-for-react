@@ -8,7 +8,7 @@ module Api
       def create
         result = run Race::Create
         if result.success?
-          render json: @model, status: :created
+          render json: RaceSerializer.render(@model), status: :created
         else
           render json: result['contract.default'].errors.messages, status: :unprocessable_entity
         end
@@ -16,13 +16,13 @@ module Api
 
       def show
         run Race::Show
-        render json: @model
+        render json: RaceSerializer.render(@model)
       end
 
       def update
         result = run Race::Update
         if result.success?
-          render json: @model, status: :ok
+          render json: RaceSerializer.render(@model), status: :ok
         else
           render json: result['contract.default'].errors.messages, status: :unprocessable_entity
         end
@@ -45,13 +45,6 @@ module Api
                   end_date: params[:end_date]
                 )
         render json: @cars
-      end
-
-      private
-
-      def _run_options(options)
-        options = super(options)
-        options.merge('contract.default.class' => MyContainer['race.contract'])
       end
     end
   end

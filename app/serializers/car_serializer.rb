@@ -3,5 +3,5 @@ class CarSerializer < Blueprinter::Base
     obj.id.to_s
   end
 
-  fields :name, :created_at, :updated_at
+  fields :name, :created_at, :updated_at, :car_type
 end
