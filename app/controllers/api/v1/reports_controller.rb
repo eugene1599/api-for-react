@@ -5,12 +5,12 @@ module Api
       load_and_authorize_resource :report, through: :race, only: %i[index create show update destroy]
 
       def index
-        render json: @reports.order(created_at: :desc)
+        render json: ReportSerializer.render(@reports.order(created_at: :desc))
       end
 
       def create
         if @report.save
-          render json: @report, status: :created
+          render json: ReportSerializer.render(@report), status: :created
         else
           render json: @report.errors, status: :unprocessable_entity
         end
@@ -22,7 +22,7 @@ module Api
 
       def update
         if @report.update(report_params)
-          render json: @report, status: :ok
+          render json: ReportSerializer.render(@report), status: :ok
         else
           render json: @report.errors, status: :unprocessable_entity
         end

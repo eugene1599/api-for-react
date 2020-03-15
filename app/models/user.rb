@@ -5,9 +5,6 @@ class User
   field :locking_name, type: String
   field :locked_at, type: Time
 
-  # locker locked_at_field: :locker_locked_at,
-        #  locked_until_field: :locker_locked_until
-
   ## Database authenticatable
   field :email,              type: String, default: ''
   field :encrypted_password, type: String, default: ''
@@ -44,8 +41,6 @@ class User
   has_many :cars, dependent: :destroy
   has_many :races, dependent: :destroy
   # has_many :reports, through: :races
-
-  # mount_uploader :avatar, AvatarUploader
 
   validates :email, email: true, uniqueness: true, presence: true
   validates :password, length: { minimum: 8 }, if: -> { password.present? }
