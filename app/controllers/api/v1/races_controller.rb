@@ -3,6 +3,7 @@ module Api
     class RacesController < ApplicationController
       def index
         run Race::Index
+        render json: RaceSerializer.render(@model)
       end
 
       def create
