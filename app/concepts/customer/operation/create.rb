@@ -1,12 +1,6 @@
 class Customer::Create < Trailblazer::Operation
-  # class Present < Trailblazer::Operation
-  #   self['contract.default.class'] = Customer::Contract::Create
-
-  #   step Model(Customer, :new)
-  #   step Contract::Build()
-  # end
-
-  # step Nested(Present)
+  step Model(Customer, :new)
+  step Contract::Build(constant: Customer::Contract::Create)
   step :assign_current_user!
   step Contract::Validate(key: :customer)
   step Contract::Persist()

@@ -1,8 +1,6 @@
 class UserProfile::Update < Trailblazer::Operation
-  # self['contract.default.class'] = UserProfile::Contract::Create
-
   step :model!
-  step Contract::Build()
+  step Contract::Build(constant: UserProfile::Contract::Create)
   step Contract::Validate(key: :user_profile)
   step Contract::Persist()
 
