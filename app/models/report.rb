@@ -22,15 +22,15 @@ class Report
   end
 
   def mileage_from_previous_report
-    return 0 unless race.reports.first.persisted?
+    previous_report = race.reports.where(:created_at.lte => created_at || DateTime.current)
+      .where(:id.ne => id)
+      .order(mileage: :desc)
+      .limit(1)
+      .first
 
-    return race.reports.where.not(id: nil).last.mileage unless persisted?
+    return 0 unless previous_report
 
-    return 0 if race.reports.first.id == id
-
-    race.reports
-        .where('mileage <= :current_report', current_report: mileage)
-        .where.not(id: id).last.mileage
+    previous_report.mileage
   end
 
   def current_mileage_should_be_smaller_than_next
@@ -39,7 +39,6 @@ class Report
                       .where.not(id: id).first
 
     return unless next_report
-
     return if next_report.mileage >= mileage
 
     errors.add(:mileage, "can't be greater than mileage from next report")

@@ -5,7 +5,7 @@ module Api
       load_and_authorize_resource :report, through: :race, only: %i[index create show update destroy]
 
       def index
-        render json: ReportSerializer.render(@reports.order(created_at: :desc))
+        render json: ReportSerializer.render(@reports.order(created_at: :desc).documents)
       end
 
       def create
