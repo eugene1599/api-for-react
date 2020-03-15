@@ -10,7 +10,7 @@ describe Customer::Update do
 
   context 'with empty params' do
     it 'does not update customer' do
-      result = Customer::Update.({}, current_user: user)
+      result = Customer::Update.(params: {}, current_user: user)
       expect(result.success?).to be false
     end
   end
@@ -18,14 +18,14 @@ describe Customer::Update do
   context 'with valid params' do
     it 'updates customer' do
       customer
-      result = Customer::Update.({ id: customer.id, customer: customer_valid_params }, current_user: customer.user)
+      result = Customer::Update.(params: { id: customer.id, customer: customer_valid_params }, current_user: customer.user)
       expect(result.success?).to be true
     end
   end
 
   context 'with invalid params' do
     it 'does not update customer' do
-      result = Customer::Update.({ id: customer.id, customer: customer_invalid_params }, current_user: customer.user)
+      result = Customer::Update.(params: { id: customer.id, customer: customer_invalid_params }, current_user: customer.user)
       expect(result.success?).to be false
     end
   end
@@ -33,7 +33,7 @@ describe Customer::Update do
   context 'when user try to update not own customer' do
     it 'does not update customer' do
       customer2
-      result = Customer::Update.({ id: customer2.id, customer: customer_valid_params }, current_user: customer.user)
+      result = Customer::Update.(params: { id: customer2.id, customer: customer_valid_params }, current_user: customer.user)
       expect(result.success?).to be false
     end
   end

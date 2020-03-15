@@ -2,9 +2,8 @@
   "title": "Car",
   "type": "object",
   "properties": {
-      "id": { "type": "integer" },
+      "id": { "type": "string" },
       "name": { "type": "string" },
-      "user_id": {"type": "integer"},
       "car_type": {"type": "string"},
       "updated_at": {"type": "string"},
       "created_at": {"type": "string"}

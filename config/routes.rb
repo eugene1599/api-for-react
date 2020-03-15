@@ -14,7 +14,6 @@ Rails.application.routes.draw do
 
       get 'reports', to: 'reports#user_reports'
       get 'search_cars_by_driver', to: 'races#search_cars_by_driver'
-      resource :user_profile, only: %i[show update]
     end
   end
 end

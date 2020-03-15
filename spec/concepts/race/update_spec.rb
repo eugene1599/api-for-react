@@ -10,7 +10,7 @@ describe Race::Update do
 
   context 'with empty params' do
     it 'does not update race' do
-      result = Race::Update.({}, current_user: user)
+      result = Race::Update.(params: {}, current_user: user)
       expect(result.success?).to be false
     end
   end
@@ -18,14 +18,14 @@ describe Race::Update do
   context 'with valid params' do
     it 'updates race' do
       race
-      result = Race::Update.({ id: race.id, race: race_valid_params }, current_user: race.user)
+      result = Race::Update.(params: { id: race.id, race: race_valid_params }, current_user: race.user)
       expect(result.success?).to be true
     end
   end
 
   context 'with invalid params' do
     it 'does not update race' do
-      result = Race::Update.({ id: race.id, race: race_invalid_params }, current_user: race.user)
+      result = Race::Update.(params: { id: race.id, race: race_invalid_params }, current_user: race.user)
       expect(result.success?).to be false
     end
   end
@@ -33,7 +33,7 @@ describe Race::Update do
   context 'when user try to update not own race' do
     it 'does not update race' do
       race2
-      result = Race::Update.({ id: race2.id, race: race_valid_params }, current_user: race.user)
+      result = Race::Update.(params: { id: race2.id, race: race_valid_params }, current_user: race.user)
       expect(result.success?).to be false
     end
   end

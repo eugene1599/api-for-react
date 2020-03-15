@@ -31,11 +31,10 @@ group :development, :test do
 end
 
 group :test do
-  gem 'database_cleaner', '~> 1.6.1'
   gem 'factory_bot_rails', '~> 4.8', '>= 4.8.2'
   gem 'json_matchers', '~> 0.7.2'
   gem 'rspec-rails', '~> 3.7', '>= 3.7.2'
-  gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers', branch: 'rails-5'
+  gem 'shoulda-matchers', '~> 4.3'
   gem 'simplecov', require: false
   gem 'rails_best_practices', require: false
 end

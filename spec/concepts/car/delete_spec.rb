@@ -8,14 +8,14 @@ describe Car::Destroy do
 
   context 'with invalid car id' do
     it 'returns fail' do
-      result = Car::Destroy.({ car: { id: car.id + 1 } }, current_user: user)
+      result = Car::Destroy.(params: { car: { id: "#{car.id.to_s}1" } }, current_user: user)
       expect(result.failure?).to be true
     end
   end
 
   context 'when user try to remove not own car' do
     it 'returns fail' do
-      result = Car::Destroy.({ car: { id: car.id } }, current_user: user2)
+      result = Car::Destroy.(params: { car: { id: car.id } }, current_user: user2)
       expect(result.failure?).to be true
     end
   end
@@ -24,7 +24,7 @@ describe Car::Destroy do
     it 'deletes car' do
       car
       expect do
-        Car::Destroy.({ id: car.id }, current_user: car.user)
+        Car::Destroy.(params: { id: car.id }, current_user: car.user)
       end.to change(Car, :count).by(-1)
     end
   end

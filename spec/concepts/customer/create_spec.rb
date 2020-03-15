@@ -7,21 +7,21 @@ describe Customer::Create do
 
   context 'with empty params' do
     it 'does not create customer' do
-      result = Customer::Create.({}, current_user: user)
+      result = Customer::Create.(params: {}, current_user: user)
       expect(result.success?).to be false
     end
   end
 
   context 'with valid params' do
     it 'creates new customer' do
-      result = Customer::Create.({ customer: customer_valid_params }, current_user: user)
+      result = Customer::Create.(params: { customer: customer_valid_params }, current_user: user)
       expect(result.success?).to be true
     end
   end
 
   context 'with invalid params' do
     it 'does not create customer' do
-      result = Customer::Create.({ customer: customer_invalid_params }, current_user: user)
+      result = Customer::Create.(params: { customer: customer_invalid_params }, current_user: user)
       expect(result.success?).to be false
     end
   end

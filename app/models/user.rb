@@ -44,7 +44,6 @@ class User
   has_many :cars, dependent: :destroy
   has_many :races, dependent: :destroy
   # has_many :reports, through: :races
-  # has_one :user_profile
 
   # mount_uploader :avatar, AvatarUploader
 

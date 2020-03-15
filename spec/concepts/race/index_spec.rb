@@ -7,7 +7,7 @@ describe Race::Index do
   let!(:race) { create(:race, user: user2, customer: create(:customer), car: create(:car)) }
 
   it 'returns races' do
-    result = Race::Index.({}, current_user: user)
+    result = Race::Index.(params: {}, current_user: user)
     expect(result['model'].size).to eq races.size
   end
 end

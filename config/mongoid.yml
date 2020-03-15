@@ -121,7 +121,7 @@ development:
 
     # Raise an error when performing a #find and the document is not found.
     # (default: true)
-    # raise_not_found_error: true
+    raise_not_found_error: true
 
     # Raise an error when defining a scope with the same name as an
     # existing method. (default: false)
@@ -163,6 +163,8 @@ test:
         read:
           mode: :primary
         max_pool_size: 1
+  options:
+    raise_not_found_error: false
 
 production:
   clients:
@@ -172,3 +174,5 @@ production:
         connect_timeout: 15
         write:
           w: 0
+  options:
+    raise_not_found_error: false
