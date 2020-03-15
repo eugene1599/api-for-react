@@ -35,8 +35,8 @@ class Report
 
   def current_mileage_should_be_smaller_than_next
     next_report = race.reports
-                      .where('mileage >= :current_report', current_report: mileage_was)
-                      .where.not(id: id).first
+                      .where(:mileage.gte => mileage_was)
+                      .where(:id.ne => id).first
 
     return unless next_report
     return if next_report.mileage >= mileage
