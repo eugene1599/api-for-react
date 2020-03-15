@@ -5,7 +5,7 @@ class RaceSerializer < Blueprinter::Base
 
   fields :start_date, :end_date, :cargo_weight, :race_price, :created_at, :updated_at
 
-  %i[car_id customer_id].each do |relation_id|
+  %i[car_id customer_id driver_ids].each do |relation_id|
     field relation_id do |obj|
       obj.public_send(relation_id).to_s
     end
