@@ -32,6 +32,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'database_cleaner-mongoid'
   gem 'factory_bot_rails', '~> 4.8', '>= 4.8.2'
   gem 'json_matchers', '~> 0.7.2'
   gem 'rspec-rails', '~> 3.7', '>= 3.7.2'
