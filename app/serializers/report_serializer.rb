@@ -6,6 +6,6 @@ class ReportSerializer < Blueprinter::Base
   fields :fuel, :fuel_cost, :mileage, :created_at, :updated_at
 
   field :race_id do |obj|
-    obj.race_id.to_s
+    obj.race.id.to_s
   end
 end
