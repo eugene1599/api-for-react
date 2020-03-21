@@ -10,5 +10,7 @@ class Race
   belongs_to :customer
   belongs_to :user
   has_and_belongs_to_many :drivers
-  has_many :reports, dependent: :destroy
+
+
+  embeds_many :reports
 end

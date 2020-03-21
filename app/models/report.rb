@@ -5,7 +5,7 @@ class Report
   field :fuel, type: Float
   field :fuel_cost, type: Float
 
-  belongs_to :race
+  embedded_in :race
 
   validate :current_mileage_should_be_greater_than_previous_or_eq
   validate :current_mileage_should_be_smaller_than_next, on: :update
