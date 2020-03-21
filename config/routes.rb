@@ -13,7 +13,6 @@ Rails.application.routes.draw do
       resources :cars
 
       get 'reports', to: 'reports#user_reports'
-      get 'search_cars_by_driver', to: 'races#search_cars_by_driver'
     end
   end
 end

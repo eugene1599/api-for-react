@@ -31,13 +31,6 @@ module Api
         end
       end
 
-      def cars_report
-        cars = CarReporter.new(@cars).each_car_report#.for_period(last_month_date_params)
-        cars.each_with_object([]) do |row, result|
-          result << "#{row.name} - Races: #{row.races_count}"
-        end
-      end
-
       def races_report
         @races.each_with_object(['Races in current month:']) do |race, result|
           total_money_spent = 0
