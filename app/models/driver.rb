@@ -5,7 +5,7 @@ class Driver
   field :first_name, type: String
   field :last_name, type: String
 
-  belongs_to :user
+  belongs_to :user, index: true
   has_and_belongs_to_many :races
   validates :driver_type, presence: true
 end

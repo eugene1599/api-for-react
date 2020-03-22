@@ -24,6 +24,7 @@ gem 'simple_enum'
 gem 'blueprinter'
 
 group :development, :test do
+  gem 'awesome_print'
   gem 'brakeman'
   gem 'dotenv-rails', '~> 2.2', '>= 2.2.1'
   gem 'ffaker', '~> 2.7'

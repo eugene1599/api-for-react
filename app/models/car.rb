@@ -4,8 +4,10 @@ class Car
 
   field :name, type: String
 
-  belongs_to :user
+  belongs_to :user, index: true
   has_many :races, dependent: :destroy
 
   validates :car_type, presence: true
+
+  index(name: 1)
 end

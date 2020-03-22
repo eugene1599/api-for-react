@@ -32,7 +32,7 @@ class User
   index({ reset_password_token: 1 }, { name: 'reset_password_token_index', unique: true, sparse: true, background: true })
   index({ confirmation_token: 1 }, { name: 'confirmation_token_index', unique: true, sparse: true, background: true })
   index({ uid: 1, provider: 1}, { name: 'uid_provider_index', unique: true, background: true })
-  index({ _id: 1, locking_name: 1 }, name: 'mongoid_locker_index', sparse: true, unique: true, expire_after_seconds: lock_timeout)
+  index({ _id: 1, locking_name: 1 }, name: 'mongoid_locker_index', sparse: true, unique: true)
 
   PASSWORD_REGEX = Regexp.new('\A[A-Za-z\-_0-9\d]+\z')
 
