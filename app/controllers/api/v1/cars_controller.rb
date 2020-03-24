@@ -3,13 +3,13 @@ module Api
     class CarsController < ApplicationController
       def index
         run Car::Index
-        render json: @model
+        render json: CarSerializer.render(@model)
       end
 
       def create
         result = run Car::Create
         if result.success?
-          render json: @model, status: :created
+          render json: CarSerializer.render(@model), status: :created
         else
           render json: result['contract.default'].errors.messages, status: :unprocessable_entity
         end
@@ -17,13 +17,13 @@ module Api
 
       def show
         run Car::Show
-        render json: @model
+        render json: CarSerializer.render(@model)
       end
 
       def update
         result = run Car::Update
         if result.success?
-          render json: @model, status: :ok
+          render json: CarSerializer.render(@model), status: :ok
         else
           render json: result['contract.default'].errors.messages, status: :unprocessable_entity
         end
@@ -31,13 +31,6 @@ module Api
 
       def destroy
         run Car::Destroy
-      end
-
-      private
-
-      def _run_options(options)
-        options = super(options)
-        options.merge('contract.default.class' => MyContainer['car.contract'])
       end
     end
   end

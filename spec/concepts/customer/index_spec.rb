@@ -7,7 +7,7 @@ describe Customer::Index do
   let!(:customer) { create(:customer, user: user2) }
 
   it 'returns customers' do
-    result = Customer::Index.({}, current_user: user)
+    result = Customer::Index.(params: {}, current_user: user)
     expect(result['model'].size).to eq customers.size
   end
 end

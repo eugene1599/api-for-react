@@ -13,7 +13,6 @@ module Api
 
         {
           customers_report: customers_report,
-          cars_report: cars_report,
           races_report: races_report
         }
       end
@@ -28,13 +27,6 @@ module Api
         @customers.each_with_object(["Total customers: #{@customers.size}"]) do |customer, info|
           total_races_customer = @races.where(customer: customer).count
           info << "#{customer.company} - (#{customer.first_name} #{customer.last_name}) - RACES: #{total_races_customer}"
-        end
-      end
-
-      def cars_report
-        cars = CarReporter.new(@cars).each_car_report#.for_period(last_month_date_params)
-        cars.each_with_object([]) do |row, result|
-          result << "#{row.name} - Races: #{row.races_count}"
         end
       end
 
@@ -55,8 +47,8 @@ module Api
         return 0 unless race_has_enough_reports?(race)
 
         reports = race.reports
-        start_mileage = reports.minimum(:mileage)
-        end_mileage = reports.maximum(:mileage)
+        start_mileage = reports.order(mileage: :asc).limit(1)&.first&.mileage
+        end_mileage = reports.order(mileage: :desc).limit(1)&.first&.mileage
         total_fuel = reports.sum(:fuel)
 
         (total_fuel / (end_mileage - start_mileage)).round(2) * 100

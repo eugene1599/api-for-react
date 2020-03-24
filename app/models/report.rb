@@ -1,7 +1,12 @@
-class Report < ApplicationRecord
-  belongs_to :race
+class Report
+  include Documentable
 
-  validate :check_race_owner
+  field :mileage, type: Integer
+  field :fuel, type: Float
+  field :fuel_cost, type: Float
+
+  embedded_in :race
+
   validate :current_mileage_should_be_greater_than_previous_or_eq
   validate :current_mileage_should_be_smaller_than_next, on: :update
   validates :fuel, presence: true, numericality: { only_integer: false, greater_than: 0 }
@@ -10,12 +15,6 @@ class Report < ApplicationRecord
 
   private
 
-  def check_race_owner
-    return if race.user.races.exists?(id: race.id)
-
-    errors.add(:race_id, 'not owned by this user')
-  end
-
   def current_mileage_should_be_greater_than_previous_or_eq
     return if mileage_from_previous_report <= mileage
 
@@ -23,24 +22,23 @@ class Report < ApplicationRecord
   end
 
   def mileage_from_previous_report
-    return 0 unless race.reports.first.persisted?
+    previous_report = race.reports.where(:created_at.lte => created_at || DateTime.current)
+      .where(:id.ne => id)
+      .order(mileage: :desc)
+      .limit(1)
+      .first
 
-    return race.reports.where.not(id: nil).last.mileage unless persisted?
+    return 0 unless previous_report
 
-    return 0 if race.reports.first.id == id
-
-    race.reports
-        .where('mileage <= :current_report', current_report: mileage)
-        .where.not(id: id).last.mileage
+    previous_report.mileage
   end
 
   def current_mileage_should_be_smaller_than_next
     next_report = race.reports
-                      .where('mileage >= :current_report', current_report: mileage_was)
-                      .where.not(id: id).first
+                      .where(:mileage.gte => mileage_was)
+                      .where(:id.ne => id).first
 
     return unless next_report
-
     return if next_report.mileage >= mileage
 
     errors.add(:mileage, "can't be greater than mileage from next report")

@@ -7,21 +7,21 @@ describe Driver::Create do
 
   context 'with empty params' do
     it 'does not create driver' do
-      result = Driver::Create.({}, current_user: user)
+      result = Driver::Create.(params: {}, current_user: user)
       expect(result.success?).to be false
     end
   end
 
   context 'with valid params' do
     it 'creates new driver' do
-      result = Driver::Create.({ driver: driver_valid_params }, current_user: user)
+      result = Driver::Create.(params: { driver: driver_valid_params }, current_user: user)
       expect(result.success?).to be true
     end
   end
 
   context 'with invalid params' do
     it 'does not create driver' do
-      result = Driver::Create.({ driver: driver_invalid_params }, current_user: user)
+      result = Driver::Create.(params: { driver: driver_invalid_params }, current_user: user)
       expect(result.success?).to be false
     end
   end

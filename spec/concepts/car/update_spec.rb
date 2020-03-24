@@ -10,7 +10,7 @@ describe Car::Update do
 
   context 'with empty params' do
     it 'does not update car' do
-      result = Car::Update.({}, current_user: user)
+      result = Car::Update.(params: {}, current_user: user)
       expect(result.success?).to be false
     end
   end
@@ -18,14 +18,14 @@ describe Car::Update do
   context 'with valid params' do
     it 'updates car' do
       car
-      result = Car::Update.({ id: car.id, car: car_valid_params }, current_user: car.user)
+      result = Car::Update.(params: { id: car.id, car: car_valid_params }, current_user: car.user)
       expect(result.success?).to be true
     end
   end
 
   context 'with invalid params' do
     it 'does not update car' do
-      result = Car::Update.({ id: car.id, car: car_invalid_params }, current_user: car.user)
+      result = Car::Update.(params: { id: car.id, car: car_invalid_params }, current_user: car.user)
       expect(result.success?).to be false
     end
   end
@@ -33,7 +33,7 @@ describe Car::Update do
   context 'when user try to update not own car' do
     it 'does not update car' do
       car2
-      result = Car::Update.({ id: car2.id, car: car_valid_params }, current_user: car.user)
+      result = Car::Update.(params: { id: car2.id, car: car_valid_params }, current_user: car.user)
       expect(result.success?).to be false
     end
   end

@@ -1,8 +1,6 @@
 class Customer::Update < Trailblazer::Operation
-  self['contract.default.class'] = Customer::Contract::Create
-
   step :model!
-  step Contract::Build()
+  step Contract::Build(constant: Customer::Contract::Create)
   step Contract::Validate( key: :customer )
   step Contract::Persist()
 

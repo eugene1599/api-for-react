@@ -3,13 +3,13 @@ module Api
     class CustomersController < ApplicationController
       def index
         run Customer::Index
-        render json: @model
+        render json: CustomerSerializer.render(@model)
       end
 
       def create
         result = run Customer::Create
         if result.success?
-          render json: @model, status: :created
+          render json: CustomerSerializer.render(@model), status: :created
         else
           render json: result['contract.default'].errors.messages, status: :unprocessable_entity
         end
@@ -17,13 +17,13 @@ module Api
 
       def show
         run Customer::Show
-        render json: @model
+        render json: CustomerSerializer.render(@model)
       end
 
       def update
         result = run Customer::Update
         if result.success?
-          render json: @model, status: :ok
+          render json: CustomerSerializer.render(@model), status: :ok
         else
           render json: result['contract.default'].errors.messages, status: :unprocessable_entity
         end

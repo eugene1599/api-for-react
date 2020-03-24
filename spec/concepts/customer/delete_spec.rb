@@ -8,14 +8,14 @@ describe Customer::Destroy do
 
   context 'with invalid customer id' do
     it 'returns fail' do
-      result = Customer::Destroy.({ customer: { id: customer.id + 1 } }, current_user: user)
+      result = Customer::Destroy.(params: { customer: { id: "#{customer.id.to_s}1" } }, current_user: user)
       expect(result.failure?).to be true
     end
   end
 
   context 'when user try to remove not own customer' do
     it 'returns fail' do
-      result = Customer::Destroy.({ customer: { id: customer.id } }, current_user: user2)
+      result = Customer::Destroy.(params: { customer: { id: customer.id } }, current_user: user2)
       expect(result.failure?).to be true
     end
   end
@@ -24,7 +24,7 @@ describe Customer::Destroy do
     it 'deletes customer' do
       customer
       expect do
-        Customer::Destroy.({ id: customer.id }, current_user: customer.user)
+        Customer::Destroy.(params: { id: customer.id }, current_user: customer.user)
       end.to change(Customer, :count).by(-1)
     end
   end

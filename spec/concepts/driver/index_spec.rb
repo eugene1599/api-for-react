@@ -7,7 +7,7 @@ describe Driver::Index do
   let!(:driver) { create(:driver, user: user2) }
 
   it 'returns drivers' do
-    result = Driver::Index.({}, current_user: user)
+    result = Driver::Index.(params: {}, current_user: user)
     expect(result['model'].size).to eq drivers.size
   end
 end

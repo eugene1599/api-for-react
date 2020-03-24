@@ -10,7 +10,7 @@ describe Driver::Update do
 
   context 'with empty params' do
     it 'does not update driver' do
-      result = Driver::Update.({}, current_user: user)
+      result = Driver::Update.(params: {}, current_user: user)
       expect(result.success?).to be false
     end
   end
@@ -18,14 +18,14 @@ describe Driver::Update do
   context 'with valid params' do
     it 'updates driver' do
       driver
-      result = Driver::Update.({ id: driver.id, driver: driver_valid_params }, current_user: driver.user)
+      result = Driver::Update.(params: { id: driver.id, driver: driver_valid_params }, current_user: driver.user)
       expect(result.success?).to be true
     end
   end
 
   context 'with invalid params' do
     it 'does not update driver' do
-      result = Driver::Update.({ id: driver.id, driver: driver_invalid_params }, current_user: driver.user)
+      result = Driver::Update.(params: { id: driver.id, driver: driver_invalid_params }, current_user: driver.user)
       expect(result.success?).to be false
     end
   end
@@ -33,7 +33,7 @@ describe Driver::Update do
   context 'when user try to update not own driver' do
     it 'does not update driver' do
       driver2
-      result = Driver::Update.({ id: driver2.id, driver: driver_valid_params }, current_user: driver.user)
+      result = Driver::Update.(params: { id: driver2.id, driver: driver_valid_params }, current_user: driver.user)
       expect(result.success?).to be false
     end
   end
